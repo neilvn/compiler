@@ -13,6 +13,7 @@ type Token = object
     text: string
     kind: TokenType
 
+
 type Lexer* = object
     source: string = ""
     curr_char: char = '\t'
@@ -23,6 +24,7 @@ proc initLexer*(source: string): Lexer =
     let new_source = source & '\n'
     return Lexer(source: new_source)
 
+
 proc next_char(self: var Lexer) =
     self.curr_pos += 1
     if self.curr_pos >= self.source.len:
@@ -30,25 +32,30 @@ proc next_char(self: var Lexer) =
     else:
         self.curr_char = self.source[self.curr_pos]
 
+
 proc peek(self: Lexer): char =
     if self.curr_pos + 1 >= self.source.len:
         return '\0'
     return self.source[self.curr_pos + 1]
 
+
 proc skip_whitespace(self: var Lexer) =
     while self.curr_char in {' ', '\t', '\r'}:
         self.next_char()
+
 
 proc skip_comment(self: var Lexer) =
     if self.curr_char == '#':
         while self.curr_char != '\n':
             self.next_char()
 
+
 proc check_if_keyword(self: Lexer, token_text: string): Option[TokenType] =
     for kind in TokenType.toSeq:
         if $kind == token_text and ord(kind) >= 100 and ord(kind) < 200:
             return some(kind)
     return none(TokenType)
+
 
 proc get_token(self: var Lexer): Option[Token] =
     self.skip_whitespace()
