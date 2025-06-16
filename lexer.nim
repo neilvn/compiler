@@ -13,13 +13,13 @@ type Token = object
     text: string
     kind: TokenType
 
-type Lexer = object
+type Lexer* = object
     source: string = ""
     curr_char: char = '\t'
     curr_pos: int = -1
 
 
-proc initLexer(source: string): Lexer =
+proc initLexer*(source: string): Lexer =
     let new_source = source & '\n'
     return Lexer(source: new_source)
 
