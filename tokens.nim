@@ -4,7 +4,7 @@ type TokenType* = enum
     NUMBER = 1
     IDENT = 2
     STRING = 3
-    # Keywords.
+    # Keywords
     LABEL = 101
     GOTO = 102
     PRINT = 103
@@ -16,7 +16,7 @@ type TokenType* = enum
     WHILE = 109
     REPEAT = 110
     ENDWHILE = 111
-    # Operators.
+    # Operators
     EQ = 201  
     PLUS = 202
     MINUS = 203

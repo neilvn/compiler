@@ -1,7 +1,6 @@
 import std/os
 
 from lexer import Lexer
-
 from tokens import TokenType
 
 type Parser = object
@@ -11,8 +10,8 @@ type Parser = object
 proc initParser(self: Parser, lexer: Lexer): Parser =
     let x = "hi"
 
-proc check_token(self: Parser, kind: TokenType): bool =
+proc check_token(self: Parser, kind: TokenType): bool {.inline.} =
     return $kind == self.curr_token
 
-proc check_peek(self: Parser, kind: TokenType): bool =
+proc check_peek(self: Parser, kind: TokenType): bool {.inline.}  =
     return $kind == self.peek_token
