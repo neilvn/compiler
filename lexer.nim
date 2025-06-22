@@ -9,9 +9,9 @@ import std/sugar
 
 from tokens import TokenType
 
-type Token = object
-    text: string
-    kind: TokenType
+type Token* = object
+    text*: string
+    kind*: TokenType
 
 
 type Lexer* = object
@@ -57,7 +57,7 @@ proc check_if_keyword(self: Lexer, token_text: string): Option[TokenType] =
     return none(TokenType)
 
 
-proc get_token(self: var Lexer): Option[Token] =
+proc get_token*(self: var Lexer): Option[Token] =
     self.skip_whitespace()
     self.skip_comment()
 
