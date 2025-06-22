@@ -15,7 +15,7 @@ type Token* = object
 
 
 type Lexer* = object
-    source: string = ""
+    source*: string = ""
     curr_char: char = '\t'
     curr_pos: int = -1
 
@@ -130,19 +130,3 @@ proc get_token*(self: var Lexer): Option[Token] =
 
     self.next_char()
     return token
-
-
-proc main() =
-    let source = "IF+-123 foo*THEN/" 
-    var lexer = initLexer(source)
-
-    var token = lexer.get_token()
-
-    if token.isNone:
-        quit("No code to parse")
-
-    while token.get().kind != TokenType.EOF:
-        echo token.get().kind
-        token = lexer.get_token()    
-
-main()
